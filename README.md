@@ -4,7 +4,7 @@ A static, browser-based research interface for USDC and USDT peg-price diagnosti
 
 ## Run it
 
-Open `index.html`, or publish the three site files at the root of a GitHub Pages / Cloudflare Pages project. No build step, account, key, package install, or paid service is required.
+Open `index.html`, or publish all seven files at the root of a GitHub Pages / Cloudflare Pages project. The Literature and VAR / HANK pages link from the main page. No build step, account, key, package install, or paid service is required.
 
 ## Data and cost
 
@@ -17,9 +17,9 @@ These are the no-key public endpoints documented by DeFiLlama. The site does not
 
 ## Specification
 
-The transparent descriptive baseline is selected from common AR(p), p=1..8, by pooled BIC or AICc across USDC and USDT; fixed AR(4) is also available for comparison. The equation is `d_t = α + Σ φ_j d_(t−j) + ε_t`, where `d_t = (price_t − 1) × 10,000` basis points. Coefficients are estimated by OLS; reported standard errors use a Newey–West HAC covariance estimator with a rule-of-thumb lag length. The displayed p-values use a normal approximation. The scenario panel applies a user-set initial shock to the fitted AR(1) path. Supply outflow is reported separately and is not treated as a causal price effect.
+The overview compares AR(p), p=1..8, orders with pooled BIC or AICc across USDC and USDT; fixed AR(4) is available for comparison. The equation is `d_t = α + Σ φ_j d_(t−j) + ε_t`, where `d_t = (price_t − 1) × 10,000` basis points. OLS coefficients use Newey–West HAC standard errors; reported p-values use a normal approximation. Its forecast band is a descriptive residual-based band, not a calibrated prediction interval. The separate VAR / HANK page supports CSV-imported macro series, reduced-form VAR, recursive Cholesky SVAR, Minnesota-prior BVAR, and a deliberately small two-household HANK-style sensitivity panel. These are exploratory implementations, not substitutes for a fully specified and validated research estimation pipeline. The money-multiplier panel is an explicit accounting sensitivity, not a causal estimate.
 
-Price and circulating-supply observations do not identify reserve liquidity, redemption queues, or arbitrage access. The interface deliberately does not invent reserve ratios or claim causal run-risk estimates. Imported CSV files should include `date,price` and may include `supply` (USD units).
+Price and circulating-supply observations do not identify reserve liquidity, redemption queues, or arbitrage access. The interface does not claim causal run-risk estimates. Price CSV import expects `date,price` and may include `supply` (USD units). Macro CSV import expects a date column and selected numeric series such as `usdc_peg_bp`, `usdt_peg_bp`, `fedfunds`, `inflation`, `treasury3m`, and `money_multiplier`.
 
 ## Research references
 
